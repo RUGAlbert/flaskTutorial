@@ -651,3 +651,36 @@ def getUsers():
 	#note the 201 we return to indicate a correct insert
 	return jsonify(result), 201
 ```
+### SQLalchemy
+If you need a database for your application, please use this.
+In short inside your init you need to startup the connection and assign it to the parameter db.
+(You can put in the config the database url) and set and env variable with the password.
+After connecting you can use object oriented database, which is way out of the scope of this tutorial. Please google it, it can be really nice.
+Example of class used for OOD
+```python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), index=True)
+    
+    def __repr__(self):
+        return '''
+                <User>
+                    name: {}
+                </User>'''.format(self.name)
+```
+
+But please before using sqlalchmey (and migrate) google.
+But it is adviced to use it.
+With this class you can now do things like this:
+```python
+User.query.filter_by(name='Albert').all()
+```
+Of course you can also just use sql. (we use the var against sql injection)
+```python
+sql = "SELECT * FROM user WHERE name = :var0;"
+sqlVars = {'var0':'albert'}
+db.session.execute(sql, sqlVars)
+```
+
+There are way more things you can use, but please google it.
+This at least will give you a head start and some terms to look for.
