@@ -57,13 +57,13 @@ The first lines a some imports and I assume you already understand how that work
 
 Basically we now have a working app which is useless.
 So we have to add a route. Before starting adding routes we first have to make the app understand where to find it. You can do so by uncommenting the line 
-```
+```python
 from app import routes
 ```
 This is enough for the app to understand where to find the routes.
 So let's create our first route.
 #### **`app/routes.py`**
-```
+```python
 from app import app
 
 @app.route('/')
@@ -100,7 +100,7 @@ Then a block starts, this is an object defined by the parent (the file it extend
 In this we do an if statement (logic is done by using {% %}. And if a title is defined we will use that, otherwise we will just use a default.  The {{ }} say that inside this some variable is used, or some function is called which will return something to be used inside that bit of the html page. For example the title.
 
 #### **`app/templates/errors/404.html`**
-```
+```html
 ...
 {% block styles %}
 {{ super() }}
@@ -113,7 +113,7 @@ Now there is only one question, how do we know the version of the file without h
 Let's first finish this html page.
 
 #### **`app/templates/errors/404.html`**
-```
+```html
 {% block content %}
 <section class="page_404">
 	<div class="container">
@@ -147,7 +147,7 @@ Everything that is within the static folder, will automatically be cached by the
 Now the last part the version control.
 For all the default parameters for this app we are going to create a new file called config.py.
 #### **`config.py`**
-```
+```python
 import os
 
 class Config(object):
@@ -161,7 +161,7 @@ We have a version variable, used for *wait for it* version control. And a ISDEBU
 We have this file now, but of course flask still needs to understand where to find it.
 So we are going to update our init file.
 #### **`app/__init__.py`**
-```
+```python
 from flask import Flask, session
 from flask import render_template
 from config import Config
