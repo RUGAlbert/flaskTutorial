@@ -15,6 +15,6 @@ from app import routes
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('errors/404.html', title='Error', error=404), 404
+    return render_template('errors/404.html', title='Error'), 404
 	
 	
