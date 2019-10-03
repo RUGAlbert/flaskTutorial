@@ -631,9 +631,23 @@ Since I did not write any api by myself, we will now create a very simple api. J
 
 ### Get data
 ```python
-@app.route('/api/users')
+from flask import request, jsonify
+@app.route('/api/search-users', methods=["GET"])
 def getUsers():
-	```
-request.args.get('user')
+	#gets the data from the request (search query for example)
+	username = request.args.get('username')
+	result = getData(username)
+	return jsonify(result)
 ```
+
+### Put data
+```python
+from flask import request, jsonify
+@app.route('/api/users', methods=["PUT"])
+def getUsers():
+	#gets the data from the request
+	username = request.args.get('username')
+	result = insertData(username)
+	#note the 201 we return to indicate a correct insert
+	return jsonify(result), 201
 ```
