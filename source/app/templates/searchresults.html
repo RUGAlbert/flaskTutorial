@@ -1,0 +1,38 @@
+{% extends 'searchbase.html' %}
+
+{% block searchquery %}
+<div class="container searchbarfull searchresults">
+  <div class="d-flex justify-content-center h-100">
+	<div class="searchbar">
+	  <input id="input" class="search_input hovered" type="text" name="" placeholder="Search...">
+	  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+	</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block searchresults %}
+<div class="container">
+	<section class="col-xs-12 col-sm-6 col-md-12">
+		{% for u in users %}
+			<article class="search-result row">
+				<div class="col-xs-12 col-sm-12 col-md-3">
+					<a href="#" title="avatar" class="thumbnail"><img src="{{u.avatar_url}}" alt="avatar" /></a>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-2">
+					<ul class="meta-search">
+						<li><i class="glyphicon glyphicon-calendar"></i> <span>{{u.created_at}}</span></li>
+						<li><i class="glyphicon glyphicon-time"></i> <span>{{u.updated_at}}</span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>{{u.public_repos}}</span></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+					<h3><a href="#" title="">{{u.name}}</a></h3>
+					<p>{{u.bio}}</p>	
+				</div>
+				<span class="clearfix borda"></span>
+			</article>
+		{% endfor %}
+	</section>
+</div>
+{% endblock %}
