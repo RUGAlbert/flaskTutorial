@@ -14,7 +14,7 @@ def userSearch():
 @app.route('/users-search/<query>')
 def userSearchQuery(query):
 	session = requests.Session()
-	session.auth = ('RUGAlbert', '295ff5127f047fc96542a37253b67f94bcf614b4')
+	session.auth = ('RUGAlbert', '27f4cc3086275ac349288d2c12cccb1966548adb')
 	r = session.get('https://api.github.com/search/users?q='+query)
 	users = r.json()['items']
 	usersData = []
